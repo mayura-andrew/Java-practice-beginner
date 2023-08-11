@@ -53,7 +53,7 @@ class Employee {
 class Company {
     public static void main(String[] args){
         //Employee emp1 = new Employee("Nipun", 35, true);
-        Employee emp2 = new Employee("Shani", 25, false);
+        TemporaryEmployee emp2 = new TemporaryEmployee("Shani", 25, false, "2012-12-31");
     
         PermanentEmployee emp1 = new PermanentEmployee("Nipun", 35, true, 20, 10);
         // interacting with new Employee emp1
@@ -63,10 +63,10 @@ class Company {
 
         //emp1.doWork("Software Engineer");
         System.out.println(emp1.getAnnualLeaves());
-
+        emp1.setSalary(75000.00);
         emp1.setYearlyBonus(50000.00);
         System.out.println("Rs. "+ emp1.getYearlyBonus());
-
+        System.out.println(emp1.getSalary());
 
 
         //interacting with new Employee emp2
@@ -74,7 +74,9 @@ class Company {
         System.out.println(emp2.getAge());
         System.out.println(emp2.isMarried());
 
-        emp2.doWork("QA Engineer");
+      //  emp2.doWork("QA Engineer");
+        emp2.setSalary(25000.00);
+        System.out.println(emp2.getSalary());
     }
 }
 
@@ -109,6 +111,10 @@ class PermanentEmployee extends Employee{
     //public void setSickLeaves(int allocatedSickLeaveDays){
       //  return annualLeaves + allocatedSickLeaveDays;
    // }
+    //overrding the supper class method-polymorphism
+    public double getSalary(){
+        return super.getSalary()-(super.getSalary()*0.10);
+    }
 }
 
 class TemporaryEmployee extends Employee {
@@ -126,5 +132,9 @@ class TemporaryEmployee extends Employee {
     public void setEndOfAppointment(String dateEndOfAppointment){
         endOfAppointment = dateEndOfAppointment;
     }
-
+    
+    //overring the super class method-polymorphism
+    public double getSalary(){
+        return super.getSalary()+1000.00;
+    }
 }
