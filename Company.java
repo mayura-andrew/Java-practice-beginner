@@ -52,15 +52,21 @@ class Employee {
 
 class Company {
     public static void main(String[] args){
-        Employee emp1 = new Employee("Nipun", 35, true);
+        //Employee emp1 = new Employee("Nipun", 35, true);
         Employee emp2 = new Employee("Shani", 25, false);
-
+    
+        PermanentEmployee emp1 = new PermanentEmployee("Nipun", 35, true, 20, 10);
         // interacting with new Employee emp1
         System.out.println(emp1.getName());
         System.out.println(emp1.getAge());
         System.out.println(emp1.isMarried());
 
-        emp1.doWork("Software Engineer");
+        //emp1.doWork("Software Engineer");
+        System.out.println(emp1.getAnnualLeaves());
+
+        emp1.setYearlyBonus(50000.00);
+        System.out.println("Rs. "+ emp1.getYearlyBonus());
+
 
 
         //interacting with new Employee emp2
@@ -70,4 +76,55 @@ class Company {
 
         emp2.doWork("QA Engineer");
     }
+}
+
+
+
+class PermanentEmployee extends Employee{
+    private double yearlyBonus;
+    private int annualLeaves;
+    private int sickLeaves;
+
+    PermanentEmployee(String name, int age, boolean married, int annualLeaves,int sickLeave){
+        super(name, age, married);
+        this.annualLeaves = annualLeaves;
+        this.sickLeaves = sickLeaves;
+    }
+
+    public double getYearlyBonus(){
+        return yearlyBonus;
+    }
+
+    public void setYearlyBonus(double allocatedYearBonus){
+        yearlyBonus = allocatedYearBonus;
+    }
+
+    public int getAnnualLeaves(){
+        return annualLeaves;
+    }
+
+    public int getSickLeaves(){
+        return annualLeaves;
+    }
+    //public void setSickLeaves(int allocatedSickLeaveDays){
+      //  return annualLeaves + allocatedSickLeaveDays;
+   // }
+}
+
+class TemporaryEmployee extends Employee {
+    private String endOfAppointment;
+
+    TemporaryEmployee(String name, int age, boolean married, String dateEndOfAppointment){
+        super(name, age, married);
+        endOfAppointment = dateEndOfAppointment;
+    }
+
+    public String getEndOfAppointment(){
+        return endOfAppointment;
+    }
+
+    public void setEndOfAppointment(String dateEndOfAppointment){
+        endOfAppointment = dateEndOfAppointment;
+    }
+
 }
